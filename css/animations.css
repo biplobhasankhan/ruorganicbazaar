@@ -1,0 +1,409 @@
+/* Animation Keyframes */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes highlight-pulse {
+  0% {
+    color: var(--primary);
+  }
+  100% {
+    color: var(--primary-dark);
+  }
+}
+
+@keyframes highlight-width {
+  0% {
+    width: 0;
+    left: 0;
+  }
+  100% {
+    width: 100%;
+    left: 0;
+  }
+}
+
+/* Animation Classes */
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+.slideInLeft {
+  animation-name: slideInLeft;
+}
+
+.slideInRight {
+  animation-name: slideInRight;
+}
+
+.zoomIn {
+  animation-name: zoomIn;
+}
+
+/* Animation Delays */
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+.delay-5 {
+  animation-delay: 0.5s;
+}
+
+/* Text Animation Classes */
+.text-reveal {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+  transform: translateY(100%);
+  animation: textReveal 0.5s forwards;
+}
+
+@keyframes textReveal {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Typing Animation */
+.typing {
+  overflow: hidden;
+  border-right: 0.15em solid var(--primary);
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--primary);
+  }
+}
+
+/* Hover Animations */
+.hover-float {
+  transition: transform 0.3s ease;
+}
+
+.hover-float:hover {
+  transform: translateY(-10px);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-rotate {
+  transition: transform 0.3s ease;
+}
+
+.hover-rotate:hover {
+  transform: rotate(5deg);
+}
+
+/* Scroll Animations */
+.fade-in-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scale-in-scroll {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scale-in-scroll.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.rotate-in-scroll {
+  opacity: 0;
+  transform: rotate(10deg);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.rotate-in-scroll.visible {
+  opacity: 1;
+  transform: rotate(0);
+}
+/* Loading Animation */
+.loading {
+  width: 100%;
+  height: 4px;
+  background-color: var(--primary);
+  animation: loading 1.5s infinite;
+}
+.loading::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-dark);
+  animation: loading 1.5s infinite;
+}
+.loading::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-light);
+  animation: loading 1.5s infinite;
+}
+/* Pulse Animation */ 
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+.pulse:hover {
+  animation: pulse 0.5s infinite;
+}
+/* Highlight Animation */
+.highlight {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+.highlight::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary);
+  left: 0;
+  top: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: highlight-width 0.5s forwards;
+}
+.highlight:hover::after {
+  animation: highlight-width 0.5s forwards;
+}
+/* Floating Animation */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+.float:hover {
+  animation: float 1s ease-in-out infinite;
+}
+/* Rotate Animation */  
+.rotate {
+  animation: rotate 2s linear infinite;
+}
+.rotate:hover {
+  animation: rotate 1s linear infinite;
+}
+/* Highlight Pulse Animation */
+.highlight-pulse {
+  animation: highlight-pulse 1s infinite alternate;
+}
+.highlight-pulse:hover {
+  animation: highlight-pulse 0.5s infinite alternate;
+}
+/* Highlight Width Animation */
+.highlight-width {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+.highlight-width::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary);
+  left: 0;
+  top: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: highlight-width 0.5s forwards;
+}
+.highlight-width:hover::after {
+  animation: highlight-width 0.5s forwards;
+}
+/* Responsive Animations */
+@media (max-width: 768px) {
+  .fadeIn {
+    animation-duration: 0.5s;
+  }
+  .fadeInUp {
+    animation-duration: 0.5s;
+  }
+  .slideInLeft {
+    animation-duration: 0.5s;
+  }
+  .slideInRight {
+    animation-duration: 0.5s;
+  }
+}
+@media (max-width: 576px) {
+  .fadeIn {
+    animation-duration: 0.3s;
+  }
+  .fadeInUp {
+    animation-duration: 0.3s;
+  }
+  .slideInLeft {
+    animation-duration: 0.3s;
+  }
+  .slideInRight {
+    animation-duration: 0.3s;
+  }
+}
+/* End of CSS Animations */
+/* Add any additional custom animations or overrides below */
+/* Custom Animation Example */
+.custom-animation {
+  animation: customAnimation 1s ease-in-out;
+}
+@keyframes customAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* End of Custom Animation Example */
