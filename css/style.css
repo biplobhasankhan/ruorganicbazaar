@@ -3248,3 +3248,35 @@
     transition: transform 0.2s ease !important;
   }
   
+  .modern-contact {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border: 2px solid var(--primary-color, #4caf50);
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--primary-color, #4caf50);
+    transition: all 0.3s ease;
+  }
+
+  .contact-link i {
+    font-size: 18px;
+  }
+
+  .contact-link:hover {
+    background-color: var(--primary-color, #4caf50);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
