@@ -2,15 +2,22 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#4caf50">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="RU Organic Bazaar - Premium organic fruits delivered fresh to your doorstep. 100% organic, chemical-free produce from Bangladesh.">
   <title>RU Organic Bazaar - Premium Organic Fruits</title>
-  <link rel="icon" href="asset/Untitled design.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/mobile-enhancements.css">
+  <link rel="stylesheet" href="css/mobile-fixes.css">
+  <link rel="stylesheet" href="css/advanced-features.css">
 </head>
 <body>
   <!-- Preloader -->
@@ -47,8 +54,12 @@
     <div class="container">
       <div class="logo">
         <a href="#home">
-          
-          <img class="header-logo" src="asset/Untitled design.png" width="55" height="55" alt="RU Organic Bazaar Logo">
+          <svg class="header-logo" width="50" height="50" viewBox="0 0 200 200">
+            <circle class="logo-circle" cx="100" cy="100" r="90" />
+            <path class="logo-leaf-1" d="M100,30 C140,30 160,60 160,100 C160,140 140,170 100,170 C60,170 40,140 40,100 C40,60 60,30 100,30 Z" />
+            <path class="logo-leaf-2" d="M70,50 C100,50 120,70 120,100 C120,130 100,150 70,150 C40,150 20,130 20,100 C20,70 40,50 70,50 Z" />
+            <path class="logo-stem" d="M100,170 L100,190" />
+          </svg>
           <span>RU Organic Bazaar</span>
         </a>
       </div>
@@ -65,14 +76,14 @@
       <div class="header-actions">
         <div class="search-container">
           <input type="text" class="search-input" placeholder="Search products...">
-          <button class="search-btn" type="button" title="Search for products">
+          <button class="search-btn">
             <i class="fas fa-search"></i>
           </button>
         </div>
-        <a href="https://wa.me/8801234567890?text=Hello%20RU%20Organic%20Bazaar,%20I'm%20interested%20in%20your%20products." class="header-whatsapp" target="_blank">
+        <a href="https://wa.me/8801234567890?text=Hello%20RU%20Organic%20Bazaar,%20I'm%20interested%20in%20your%20products." class="header-whatsapp" target="_blank" aria-label="Contact on WhatsApp">
           <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="https://www.facebook.com/ruorganicbazaar.bd" class="header-facebook" target="_blank">
+        <a href="https://www.facebook.com/ruorganicbazaar" class="header-facebook" target="_blank" aria-label="Visit our Facebook page">
           <i class="fab fa-facebook-f"></i>
         </a>
         <div class="hamburger">
@@ -94,56 +105,121 @@
           <h2 class="hero-subtitle">From Tree to Table – 100% Organic, 100% Trust</h2>
           <p class="hero-description">Experience the authentic taste of nature with our premium hand-picked organic fruits, delivered fresh to your doorstep.</p>
           <div class="hero-buttons">
-            <a href="#products" class="btn btn-primary" aria-label="Explore Products">
+            <a href="#products" class="btn btn-primary ripple-btn">
               <span>Explore Products</span>
               <i class="fas fa-arrow-right"></i>
             </a>
-            <a href="#about" class="btn btn-outline" aria-label="Learn About Our Story">
+            <a href="#about" class="btn btn-outline ripple-btn">
               <span>Our Story</span>
               <i class="fas fa-leaf"></i>
             </a>
           </div>
         </div>
         <div class="hero-image" data-aos="fade-left">
-          <img src="asset/3425eb64-6e7e-47d6-b368-ad4843aef41c.png" alt="Organic Fruits Collection" class="main-image">
+          <div class="fruit-float fruit-1">
+            <img src="https://placehold.co/100x100/4caf50/FFFFFF/png?text=Fruit" alt="Organic Fruit">
+          </div>
+          <div class="fruit-float fruit-2">
+            <img src="https://placehold.co/80x80/ff9800/FFFFFF/png?text=Fruit" alt="Organic Fruit">
+          </div>
+          <div class="fruit-float fruit-3">
+            <img src="https://placehold.co/120x120/e91e63/FFFFFF/png?text=Fruit" alt="Organic Fruit">
+          </div>
+          <img src="https://placehold.co/500x500/4caf50/FFFFFF/png?text=Organic+Fruits" alt="Organic Fruits Collection" class="main-image">
         </div>
       </div>
     </div>
     <div class="hero-wave">
-      <svg id="wave" style="transform:rotate(0deg); transition: 0.3s" viewBox="0 0 1440 240" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(243, 106, 62, 1)" offset="0%"></stop><stop stop-color="rgba(255, 179, 11, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,48L48,68C96,88,192,128,288,132C384,136,480,104,576,96C672,88,768,104,864,120C960,136,1056,152,1152,160C1248,168,1344,168,1440,152C1536,136,1632,104,1728,108C1824,112,1920,152,2016,144C2112,136,2208,80,2304,68C2400,56,2496,88,2592,120C2688,152,2784,184,2880,184C2976,184,3072,152,3168,152C3264,152,3360,184,3456,176C3552,168,3648,120,3744,88C3840,56,3936,40,4032,40C4128,40,4224,56,4320,88C4416,120,4512,168,4608,160C4704,152,4800,88,4896,76C4992,64,5088,104,5184,120C5280,136,5376,128,5472,120C5568,112,5664,104,5760,88C5856,72,5952,48,6048,52C6144,56,6240,88,6336,88C6432,88,6528,56,6624,36C6720,16,6816,8,6864,4L6912,0L6912,240L6864,240C6816,240,6720,240,6624,240C6528,240,6432,240,6336,240C6240,240,6144,240,6048,240C5952,240,5856,240,5760,240C5664,240,5568,240,5472,240C5376,240,5280,240,5184,240C5088,240,4992,240,4896,240C4800,240,4704,240,4608,240C4512,240,4416,240,4320,240C4224,240,4128,240,4032,240C3936,240,3840,240,3744,240C3648,240,3552,240,3456,240C3360,240,3264,240,3168,240C3072,240,2976,240,2880,240C2784,240,2688,240,2592,240C2496,240,2400,240,2304,240C2208,240,2112,240,2016,240C1920,240,1824,240,1728,240C1632,240,1536,240,1440,240C1344,240,1248,240,1152,240C1056,240,960,240,864,240C768,240,672,240,576,240C480,240,384,240,288,240C192,240,96,240,48,240L0,240Z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      </svg>
+    </div>
   </section>
 
   <!-- Features Section -->
   <section id="features" class="features">
     <div class="container">
       <div class="features-grid">
-        <div class="feature-card" data-aos="fade-up">
+        <div class="feature-card interactive-card" data-aos="fade-up">
           <div class="feature-icon">
-            <i class="fas fa-seedling" aria-label="Seedling icon"></i>
+            <i class="fas fa-seedling"></i>
           </div>
           <h3>100% Organic</h3>
           <p>Grown naturally without chemicals or pesticides for the purest taste.</p>
         </div>
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="feature-card interactive-card" data-aos="fade-up" data-aos-delay="100">
           <div class="feature-icon">
-            <i class="fas fa-truck" aria-label="Truck icon"></i>
+            <i class="fas fa-truck"></i>
           </div>
           <h3>Fast Delivery</h3>
           <p>From our farms to your doorstep within hours of harvesting.</p>
         </div>
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="feature-card interactive-card" data-aos="fade-up" data-aos-delay="200">
           <div class="feature-icon">
-            <i class="fas fa-leaf" aria-label="Leaf icon"></i>
+            <i class="fas fa-leaf"></i>
           </div>
           <h3>Eco-Friendly</h3>
           <p>Sustainable farming practices that protect our environment.</p>
         </div>
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="feature-card interactive-card" data-aos="fade-up" data-aos-delay="300">
           <div class="feature-icon">
-            <i class="fas fa-heart" aria-label="Heart icon"></i>
+            <i class="fas fa-heart"></i>
           </div>
           <h3>Health Benefits</h3>
           <p>Nutrient-rich fruits for a healthier lifestyle and wellbeing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seasonal Countdown Section -->
+  <section id="countdown" class="seasonal">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-subtitle">Limited Time Offer</span>
+        <h2 class="section-title">Seasonal Mango Season Ending Soon</h2>
+        <div class="section-divider">
+          <span></span>
+          <i class="fas fa-hourglass-half"></i>
+          <span></span>
+        </div>
+      </div>
+      
+      <div class="countdown-timer" data-aos="fade-up">
+        <div class="countdown-item">
+          <div class="countdown-number days-number">30</div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number hours-number">24</div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number minutes-number">00</div>
+          <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number seconds-number">00</div>
+          <div class="countdown-label">Seconds</div>
+        </div>
+      </div>
+      
+      <div class="seasonal-banner animated-bg" data-aos="zoom-in">
+        <div class="seasonal-content">
+          <h3>This Season's Highlight</h3>
+          <h2 class="neon-text">Premium Mangoes</h2>
+          <p>Enjoy the king of fruits at its best! Our seasonal mangoes are now available for a limited time.</p>
+          <a href="#products" class="btn btn-light magnetic-btn">
+            <span>Shop Now</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="seasonal-image">
+          <img src="https://placehold.co/400x300/ff9800/FFFFFF/png?text=Seasonal+Mangoes" alt="Seasonal Mangoes">
+        </div>
+        <div class="seasonal-badge">
+          <span>Limited</span>
+          <span>Time</span>
         </div>
       </div>
     </div>
@@ -164,12 +240,12 @@
       <div class="about-content">
         <div class="about-image" data-aos="fade-right">
           <div class="image-frame">
-            <img src="asset/1.png" alt="Organic Farming">
+            <img src="https://placehold.co/500x600/4caf50/FFFFFF/png?text=Organic+Farming" alt="Organic Farming">
             <div class="image-dots"></div>
           </div>
           <div class="experience-badge">
-            <span class="years">NEW</span>
-            <span class="text">FOR YOUR<br>HEALTH</span>
+            <span class="years">10+</span>
+            <span class="text">Years of<br>Experience</span>
           </div>
         </div>
         <div class="about-text" data-aos="fade-left">
@@ -178,21 +254,44 @@
           
           <div class="about-stats">
             <div class="stat-item">
-              <div class="stat-number" data-count="10">1</div>
+              <div class="stat-number" data-count="5000">0</div>
               <div class="stat-label">Happy Customers</div>
             </div>
             <div class="stat-item">
-              <div class="stat-number" data-count="6">0</div>
+              <div class="stat-number" data-count="30">0</div>
               <div class="stat-label">Fruit Varieties</div>
             </div>
             <div class="stat-item">
-              <div class="stat-number" data-count="6">0</div>
+              <div class="stat-number" data-count="100">0</div>
               <div class="stat-label">Organic Farms</div>
             </div>
           </div>
           
+          <!-- Nutrition Progress Bars -->
+          <div class="nutrition-progress">
+            <h3>Why Our Fruits Are Better</h3>
+            <div class="progress-item">
+              <div class="progress-label">Vitamin Content</div>
+              <div class="progress-bar" data-percentage="90">
+                <div class="progress-bar-fill"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label">Freshness</div>
+              <div class="progress-bar" data-percentage="95">
+                <div class="progress-bar-fill"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label">Organic Certification</div>
+              <div class="progress-bar" data-percentage="100">
+                <div class="progress-bar-fill"></div>
+              </div>
+            </div>
+          </div>
+          
           <div class="about-cta">
-            <a href="#products" class="btn btn-primary">
+            <a href="#products" class="btn btn-primary ripple-btn">
               <span>Explore Our Products</span>
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -203,31 +302,39 @@
     <div class="about-bg-shape"></div>
   </section>
 
-  <!-- Seasonal Products -->
-  <section id="seasonal" class="seasonal">
+  <!-- Loyalty Program Section -->
+  <section id="loyalty" class="seasonal">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
-        <span class="section-subtitle">Limited Time</span>
-        <h2 class="section-title">Seasonal Specials</h2>
+        <span class="section-subtitle">Rewards Program</span>
+        <h2 class="section-title">Join Our Loyalty Program</h2>
         <div class="section-divider">
           <span></span>
-          <i class="fas fa-calendar-alt"></i>
+          <i class="fas fa-award"></i>
           <span></span>
         </div>
       </div>
-      <div class="seasonal-banner" data-aos="zoom-in">
-        <div class="seasonal-content">
-          <h3>This Season's Highlight</h3>
-          <h2>Premium Mangoes</h2>
-          <p>Enjoy the king of fruits at its best! Our seasonal mangoes are now available for a limited time.</p>
-          <a href="#products" class="btn btn-light">Shop Now</a>
-        </div>
-        <div class="seasonal-image">
-          <img src="asset/2.png" alt="Seasonal Mangoes">
-        </div>
-        <div class="seasonal-badge">
-          <span>Limited</span>
-          <span>Time</span>
+      
+      <div class="glass-card" data-aos="fade-up" style="padding: 40px; border-radius: var(--border-radius-lg); margin-bottom: 40px;">
+        <div class="loyalty-content" style="display: flex; flex-wrap: wrap; align-items: center; gap: 30px;">
+          <div class="loyalty-badge">
+            <div class="loyalty-badge-points">0</div>
+            <div class="loyalty-badge-label">Points</div>
+          </div>
+          <div class="loyalty-info" style="flex: 1; min-width: 300px;">
+            <h3>Earn Points With Every Purchase</h3>
+            <p>Join our loyalty program and earn points with every purchase. Redeem your points for discounts, free delivery, and exclusive products.</p>
+            <ul style="margin: 20px 0; padding-left: 20px;">
+              <li>Earn 10 points for every ৳100 spent</li>
+              <li>Get 50 bonus points when you refer a friend</li>
+              <li>Redeem 500 points for ৳100 discount</li>
+              <li>Free delivery with 300 points</li>
+            </ul>
+            <a href="#" class="btn btn-primary ripple-btn">
+              <span>Join Now</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -253,18 +360,32 @@
         <button class="filter-btn" data-filter="citrus">Citrus</button>
       </div>
       
+      <!-- Product Comparison Slider -->
+      <div class="comparison-slider" data-aos="fade-up" style="margin-bottom: 40px;">
+        <div class="before">
+          <img src="https://placehold.co/800x300/ff9800/FFFFFF/png?text=Conventional+Mango" alt="Conventional Mango">
+        </div>
+        <div class="after">
+          <img src="https://placehold.co/800x300/4caf50/FFFFFF/png?text=Organic+Mango" alt="Organic Mango">
+        </div>
+        <div class="slider-handle"></div>
+      </div>
+      
       <div class="product-grid">
         <!-- Product 1 -->
-        <div class="product-card" data-aos="fade-up" data-category="seasonal">
+        <div class="product-card interactive-card" data-aos="fade-up" data-category="seasonal">
           <div class="product-badge">Popular</div>
           <div class="product-image">
             <img src="https://placehold.co/300x300/4caf50/FFFFFF/png?text=Jackfruit" alt="Jackfruit">
             <div class="product-actions">
-              <a href="https://www.facebook.com/ruorganicbazaar.bd" class="action-btn">
+              <a href="https://www.facebook.com/ruorganicbazaar" class="action-btn" aria-label="Buy Jackfruit">
                 <i class="fas fa-shopping-basket"></i>
               </a>
-              <button class="action-btn product-quick-view" data-product="jackfruit">
+              <button class="action-btn product-quick-view" data-product="jackfruit" aria-label="Quick view of Jackfruit">
                 <i class="fas fa-eye"></i>
+              </button>
+              <button class="action-btn nutrition-btn" data-product="jackfruit" aria-label="Nutrition facts for Jackfruit">
+                <i class="fas fa-leaf"></i>
               </button>
             </div>
           </div>
@@ -283,7 +404,7 @@
               <span class="price">৳ 350</span>
               <span class="unit">/kg</span>
             </div>
-            <a href="https://www.facebook.com/ruorganicbazaar.bd" class="btn btn-primary btn-sm">
+            <a href="https://www.facebook.com/ruorganicbazaar" class="btn btn-primary btn-sm ripple-btn">
               <span>Buy Now</span>
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -291,16 +412,19 @@
         </div>
         
         <!-- Product 2 -->
-        <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="seasonal">
+        <div class="product-card interactive-card" data-aos="fade-up" data-aos-delay="100" data-category="seasonal">
           <div class="product-badge hot">Hot</div>
           <div class="product-image">
             <img src="https://placehold.co/300x300/ff9800/FFFFFF/png?text=Mango" alt="Mango">
             <div class="product-actions">
-              <a href="https://www.facebook.com/ruorganicbazaar.bd" class="action-btn">
+              <a href="https://www.facebook.com/ruorganicbazaar" class="action-btn" aria-label="Buy Mango">
                 <i class="fas fa-shopping-basket"></i>
               </a>
-              <button class="action-btn product-quick-view" data-product="mango">
+              <button class="action-btn product-quick-view" data-product="mango" aria-label="Quick view of Mango">
                 <i class="fas fa-eye"></i>
+              </button>
+              <button class="action-btn nutrition-btn" data-product="mango" aria-label="Nutrition facts for Mango">
+                <i class="fas fa-leaf"></i>
               </button>
             </div>
           </div>
@@ -319,7 +443,7 @@
               <span class="price">৳ 200</span>
               <span class="unit">/kg</span>
             </div>
-            <a href="https://www.facebook.com/ruorganicbazaar.bd" class="btn btn-primary btn-sm">
+            <a href="https://www.facebook.com/ruorganicbazaar" class="btn btn-primary btn-sm ripple-btn">
               <span>Buy Now</span>
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -327,15 +451,18 @@
         </div>
         
         <!-- Product 3 -->
-        <div class="product-card" data-aos="fade-up" data-aos-delay="200" data-category="exotic">
+        <div class="product-card interactive-card" data-aos="fade-up" data-aos-delay="200" data-category="exotic">
           <div class="product-image">
             <img src="https://placehold.co/300x300/e91e63/FFFFFF/png?text=Papaya" alt="Papaya">
             <div class="product-actions">
-              <a href="https://www.facebook.com/ruorganicbazaar.bd" class="action-btn">
+              <a href="https://www.facebook.com/ruorganicbazaar" class="action-btn" aria-label="Buy Papaya">
                 <i class="fas fa-shopping-basket"></i>
               </a>
-              <button class="action-btn product-quick-view" data-product="papaya">
+              <button class="action-btn product-quick-view" data-product="papaya" aria-label="Quick view of Papaya">
                 <i class="fas fa-eye"></i>
+              </button>
+              <button class="action-btn nutrition-btn" data-product="papaya" aria-label="Nutrition facts for Papaya">
+                <i class="fas fa-leaf"></i>
               </button>
             </div>
           </div>
@@ -354,7 +481,7 @@
               <span class="price">৳ 120</span>
               <span class="unit">/kg</span>
             </div>
-            <a href="https://www.facebook.com/ruorganicbazaar.bd" class="btn btn-primary btn-sm">
+            <a href="https://www.facebook.com/ruorganicbazaar" class="btn btn-primary btn-sm ripple-btn">
               <span>Buy Now</span>
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -362,15 +489,18 @@
         </div>
         
         <!-- Product 4 -->
-        <div class="product-card" data-aos="fade-up" data-aos-delay="300" data-category="exotic">
+        <div class="product-card interactive-card" data-aos="fade-up" data-aos-delay="300" data-category="exotic">
           <div class="product-image">
             <img src="https://placehold.co/300x300/ffc107/FFFFFF/png?text=Banana" alt="Banana">
             <div class="product-actions">
-              <a href="https://www.facebook.com/ruorganicbazaar.bd" class="action-btn">
+              <a href="https://www.facebook.com/ruorganicbazaar" class="action-btn" aria-label="Buy Banana">
                 <i class="fas fa-shopping-basket"></i>
               </a>
-              <button class="action-btn product-quick-view" data-product="banana">
+              <button class="action-btn product-quick-view" data-product="banana" aria-label="Quick view of Banana">
                 <i class="fas fa-eye"></i>
+              </button>
+              <button class="action-btn nutrition-btn" data-product="banana" aria-label="Nutrition facts for Banana">
+                <i class="fas fa-leaf"></i>
               </button>
             </div>
           </div>
@@ -389,7 +519,7 @@
               <span class="price">৳ 80</span>
               <span class="unit">/dozen</span>
             </div>
-            <a href="https://www.facebook.com/ruorganicbazaar.bd" class="btn btn-primary btn-sm">
+            <a href="https://www.facebook.com/ruorganicbazaar" class="btn btn-primary btn-sm ripple-btn">
               <span>Buy Now</span>
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -397,15 +527,18 @@
         </div>
         
         <!-- Product 5 -->
-        <div class="product-card" data-aos="fade-up" data-aos-delay="400" data-category="citrus">
+        <div class="product-card interactive-card" data-aos="fade-up" data-aos-delay="400" data-category="citrus">
           <div class="product-image">
             <img src="https://placehold.co/300x300/4caf50/FFFFFF/png?text=Guava" alt="Guava">
             <div class="product-actions">
-              <a href="https://www.facebook.com/ruorganicbazaar.bd" class="action-btn">
+              <a href="https://www.facebook.com/ruorganicbazaar" class="action-btn" aria-label="Buy Guava">
                 <i class="fas fa-shopping-basket"></i>
               </a>
-              <button type="button" class="action-btn product-quick-view" data-product="guava" title="Quick view guava">
+              <button class="action-btn product-quick-view" data-product="guava" aria-label="Quick view of Guava">
                 <i class="fas fa-eye"></i>
+              </button>
+              <button class="action-btn nutrition-btn" data-product="guava" aria-label="Nutrition facts for Guava">
+                <i class="fas fa-leaf"></i>
               </button>
             </div>
           </div>
@@ -424,7 +557,7 @@
               <span class="price">৳ 150</span>
               <span class="unit">/kg</span>
             </div>
-            <a href="https://www.facebook.com/ruorganicbazaar.bd" class="btn btn-primary btn-sm">
+            <a href="https://www.facebook.com/ruorganicbazaar" class="btn btn-primary btn-sm ripple-btn">
               <span>Buy Now</span>
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -432,16 +565,19 @@
         </div>
         
         <!-- Product 6 -->
-        <div class="product-card" data-aos="fade-up" data-aos-delay="500" data-category="exotic">
+        <div class="product-card interactive-card" data-aos="fade-up" data-aos-delay="500" data-category="exotic">
           <div class="product-badge">Fresh</div>
           <div class="product-image">
             <img src="https://placehold.co/300x300/ff9800/FFFFFF/png?text=Pineapple" alt="Pineapple">
             <div class="product-actions">
-              <a href="https://www.facebook.com/ruorganicbazaar.bd" class="action-btn">
+              <a href="https://www.facebook.com/ruorganicbazaar" class="action-btn" aria-label="Buy Pineapple">
                 <i class="fas fa-shopping-basket"></i>
               </a>
-              <button type="button" class="action-btn product-quick-view" data-product="pineapple" title="Quick view pineapple">
+              <button class="action-btn product-quick-view" data-product="pineapple" aria-label="Quick view of Pineapple">
                 <i class="fas fa-eye"></i>
+              </button>
+              <button class="action-btn nutrition-btn" data-product="pineapple" aria-label="Nutrition facts for Pineapple">
+                <i class="fas fa-leaf"></i>
               </button>
             </div>
           </div>
@@ -460,7 +596,7 @@
               <span class="price">৳ 180</span>
               <span class="unit">/piece</span>
             </div>
-            <a href="https://www.facebook.com/ruorganicbazaar.bd" class="btn btn-primary btn-sm">
+            <a href="https://www.facebook.com/ruorganicbazaar" class="btn btn-primary btn-sm ripple-btn">
               <span>Buy Now</span>
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -469,7 +605,7 @@
       </div>
       
       <div class="view-all-products" data-aos="fade-up">
-        <a href="#" class="btn btn-outline">
+        <a href="#" class="btn btn-outline ripple-btn">
           <span>View All Products</span>
           <i class="fas fa-arrow-right"></i>
         </a>
@@ -512,20 +648,66 @@
             </ul>
           </div>
           <div class="quantity-selector">
-            <button type="button" class="quantity-btn minus-btn" title="Decrease quantity">
+            <button class="quantity-btn minus-btn">
               <i class="fas fa-minus"></i>
             </button>
-            <input type="number" class="quantity-input" value="1" min="1" max="99" placeholder="Quantity" aria-label="Quantity">
-            <button type="button" class="quantity-btn plus-btn" title="Increase quantity">
+            <input type="number" class="quantity-input" value="1" min="1" max="99">
+            <button class="quantity-btn plus-btn">
               <i class="fas fa-plus"></i>
             </button>
           </div>
           <div class="product-modal-actions">
-            <a href="https://www.facebook.com/ruorganicbazaar.bd" class="btn btn-primary">
+            <a href="https://www.facebook.com/ruorganicbazaar" class="btn btn-primary ripple-btn">
               <span>Buy Now</span>
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nutrition Facts Modal -->
+  <div class="modal" id="nutrition-modal">
+    <div class="modal-content">
+      <span class="modal-close nutrition-modal-close">&times;</span>
+      <div class="modal-body">
+        <div class="nutrition-facts">
+          <div class="nutrition-facts-header">
+            <h2 class="nutrition-facts-title">Fruit Name</h2>
+            <p class="nutrition-facts-subtitle">Nutrition Facts per 100g</p>
+          </div>
+          <table class="nutrition-facts-table">
+            <tr class="thick-row">
+              <th colspan="2">Amount Per Serving</th>
+            </tr>
+            <tr>
+              <th>Calories</th>
+              <td class="calories-value">0</td>
+            </tr>
+            <tr class="thin-row">
+              <td colspan="2"></td>
+            </tr>
+            <tr>
+              <th>Total Fat</th>
+              <td class="fat-value">0g</td>
+            </tr>
+            <tr>
+              <th>Total Carbohydrates</th>
+              <td class="carbs-value">0g</td>
+            </tr>
+            <tr>
+              <th>Protein</th>
+              <td class="protein-value">0g</td>
+            </tr>
+            <tr class="thick-row">
+              <td colspan="2"></td>
+            </tr>
+            <tr class="vitamin-row">
+              <th>Vitamin C</th>
+              <td class="vitamin-c-value">0mg</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
@@ -548,7 +730,7 @@
         <div class="swiper-wrapper">
           <!-- Testimonial 1 -->
           <div class="testimonial-item swiper-slide">
-            <div class="testimonial-content">
+            <div class="testimonial-content glass-card">
               <div class="testimonial-rating">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -571,7 +753,7 @@
           
           <!-- Testimonial 2 -->
           <div class="testimonial-item swiper-slide">
-            <div class="testimonial-content">
+            <div class="testimonial-content glass-card">
               <div class="testimonial-rating">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -594,7 +776,7 @@
           
           <!-- Testimonial 3 -->
           <div class="testimonial-item swiper-slide">
-            <div class="testimonial-content">
+            <div class="testimonial-content glass-card">
               <div class="testimonial-rating">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -624,19 +806,20 @@
   <!-- Newsletter Section -->
   <section id="newsletter" class="newsletter">
     <div class="container">
-      <div class="newsletter-content" data-aos="zoom-in">
+      <div class="newsletter-content animated-bg" data-aos="zoom-in">
         <div class="newsletter-text">
-          <h2>Subscribe to Our Newsletter</h2>
+          <h2 class="neon-text">Subscribe to Our Newsletter</h2>
           <p>Stay updated with our latest products, seasonal offers, and organic farming tips.</p>
         </div>
         <form class="newsletter-form">
-          <div class="form-group">
-            <input type="email" placeholder="Enter your email address" required>
-            <button type="submit" class="btn btn-primary">
-              <span>Subscribe</span>
-              <i class="fas fa-paper-plane"></i>
-            </button>
+          <div class="float-label-group">
+            <input type="email" id="newsletter-email" placeholder=" ">
+            <label for="newsletter-email">Enter your email address</label>
           </div>
+          <button type="submit" class="btn btn-primary magnetic-btn">
+            <span>Subscribe</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
         </form>
       </div>
     </div>
@@ -657,7 +840,7 @@
       
       <div class="contact-content">
         <div class="contact-info" data-aos="fade-right">
-          <div class="contact-card">
+          <div class="contact-card glass-card">
             <div class="contact-card-header">
               <h3>Contact Information</h3>
               <p>Feel free to reach out to us anytime. We're here to help!</p>
@@ -692,39 +875,39 @@
               </div>
             </div>
             <div class="social-links">
-              <a href="https://www.facebook.com/ruorganicbazaar.bd" class="social-link"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-              <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="https://www.facebook.com/ruorganicbazaar" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             </div>
           </div>
         </div>
         
         <div class="contact-form-wrapper" data-aos="fade-left">
-          <form class="contact-form">
+          <form class="contact-form glass-card">
             <div class="form-row">
-              <div class="form-group">
+              <div class="float-label-group">
+                <input type="text" id="name" placeholder=" " required>
                 <label for="name">Your Name</label>
-                <input type="text" id="name" placeholder="Enter your name" required>
               </div>
-              <div class="form-group">
+              <div class="float-label-group">
+                <input type="email" id="email" placeholder=" " required>
                 <label for="email">Your Email</label>
-                <input type="email" id="email" placeholder="Enter your email" required>
               </div>
             </div>
-            <div class="form-group">
+            <div class="float-label-group">
+              <input type="tel" id="phone" placeholder=" ">
               <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" placeholder="Enter your phone number">
             </div>
-            <div class="form-group">
+            <div class="float-label-group">
+              <input type="text" id="subject" placeholder=" ">
               <label for="subject">Subject</label>
-              <input type="text" id="subject" placeholder="Enter subject">
             </div>
-            <div class="form-group">
+            <div class="float-label-group">
+              <textarea id="message" placeholder=" " required></textarea>
               <label for="message">Your Message</label>
-              <textarea id="message" placeholder="Write your message here..." required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary ripple-btn">
               <span>Send Message</span>
               <i class="fas fa-paper-plane"></i>
             </button>
@@ -824,33 +1007,33 @@
             </div>
             <p>Providing fresh, organic fruits directly from farms to your table. We believe in sustainable farming and healthy living.</p>
             <div class="footer-social">
-              <a href="https://www.facebook.com/ruorganicbazaar.bd"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-whatsapp"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="https://www.facebook.com/ruorganicbazaar" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             </div>
           </div>
           
           <div class="footer-links">
             <h3>Quick Links</h3>
             <ul>
-              <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-              <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
-              <li><a href="#products"><i class="fas fa-chevron-right"></i> Products</a></li>
-              <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
-              <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
-              <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+              <li><a href="#home" class="animated-underline"><i class="fas fa-chevron-right"></i> Home</a></li>
+              <li><a href="#about" class="animated-underline"><i class="fas fa-chevron-right"></i> About Us</a></li>
+              <li><a href="#products" class="animated-underline"><i class="fas fa-chevron-right"></i> Products</a></li>
+              <li><a href="#testimonials" class="animated-underline"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+              <li><a href="#contact" class="animated-underline"><i class="fas fa-chevron-right"></i> Contact</a></li>
+              <li><a href="#faq" class="animated-underline"><i class="fas fa-chevron-right"></i> FAQ</a></li>
             </ul>
           </div>
           
           <div class="footer-products">
             <h3>Our Products</h3>
             <ul>
-              <li><a href="#products"><i class="fas fa-apple-alt"></i> Seasonal Fruits</a></li>
-              <li><a href="#products"><i class="fas fa-lemon"></i> Citrus Fruits</a></li>
-              <li><a href="#products"><i class="fas fa-seedling"></i> Exotic Fruits</a></li>
-              <li><a href="#products"><i class="fas fa-leaf"></i> Organic Vegetables</a></li>
-              <li><a href="#products"><i class="fas fa-mortar-pestle"></i> Organic Spices</a></li>
+              <li><a href="#products" class="animated-underline"><i class="fas fa-apple-alt"></i> Seasonal Fruits</a></li>
+              <li><a href="#products" class="animated-underline"><i class="fas fa-lemon"></i> Citrus Fruits</a></li>
+              <li><a href="#products" class="animated-underline"><i class="fas fa-seedling"></i> Exotic Fruits</a></li>
+              <li><a href="#products" class="animated-underline"><i class="fas fa-leaf"></i> Organic Vegetables</a></li>
+              <li><a href="#products" class="animated-underline"><i class="fas fa-mortar-pestle"></i> Organic Spices</a></li>
             </ul>
           </div>
           
@@ -869,29 +1052,27 @@
     
     <div class="footer-bottom">
       <div class="container">
-      <p>&copy; 2025 RU Organic Bazaar. All rights reserved. | Developed by Biplob Hasan Khan</p>
-      <div class="footer-bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Sitemap</a>
-      </div>
+        <p>&copy; 2025 RU Organic Bazaar. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#" class="animated-underline">Privacy Policy</a>
+          <a href="#" class="animated-underline">Terms of Service</a>
+          <a href="#" class="animated-underline">Sitemap</a>
+        </div>
       </div>
     </div>
-
-    
   </footer>
 
   <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/8801234567890?text=Hello%20RU%20Organic%20Bazaar,%20I'm%20interested%20in%20your%20products." class="whatsapp-float" target="_blank" rel="noopener" title="Contact us on WhatsApp">
+  <a href="https://wa.me/8801234567890?text=Hello%20RU%20Organic%20Bazaar,%20I'm%20interested%20in%20your%20products." class="whatsapp-float" target="_blank" aria-label="Contact on WhatsApp">
     <div class="whatsapp-pulse"></div>
     <i class="fab fa-whatsapp"></i>
   </a>
-  <a href="https://wa.me/8801234567890?text=Hello%20RU%20Organic%20Bazaar,%20I%20want%20to%20place%20a%20quick%20order." class="quick-order-btn" target="_blank" rel="noopener" title="Place a quick order on WhatsApp">
+  <a href="https://wa.me/8801234567890?text=Hello%20RU%20Organic%20Bazaar,%20I%20want%20to%20place%20a%20quick%20order." class="quick-order-btn" target="_blank" aria-label="Quick order">
     <i class="fas fa-shopping-cart"></i>
   </a>
 
   <!-- Scroll to Top Button -->
-  <button class="scroll-top" type="button" title="Scroll to top">
+  <button class="scroll-top" aria-label="Scroll to top">
     <i class="fas fa-arrow-up"></i>
   </button>
 
@@ -902,7 +1083,10 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/animations.js"></script>
   <script src="js/theme.js"></script>
+  <script src="js/mobile-fix.js"></script>
+  <script src="js/mobile-nav-fix.js"></script>
+  <script src="js/advanced-animations.js"></script>
+  <script src="js/advanced-features.js"></script>
 </body>
 </html>

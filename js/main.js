@@ -1,25 +1,41 @@
+/**
+ * RU Organic Bazaar - Main JavaScript
+ * Handles all core functionality for the website
+ * Author: Professional Developer
+ * Version: 3.0
+ */
+
 // Wait for the DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", () => {
+  // Set viewport height variable for mobile browsers
+  const setVhVariable = () => {
+    const vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty("--vh", `${vh}px`)
+  }
+
+  // Set on initial load
+  setVhVariable()
+
+  // Update on resize
+  window.addEventListener("resize", setVhVariable)
+
   // Initialize AOS (Animate On Scroll)
-  // Declare AOS if it's not already available globally
-  if (typeof AOS === "undefined") {
-    console.warn("AOS is not defined. Make sure to include the AOS library.")
-  } else {
+  if (typeof AOS !== "undefined") {
     AOS.init({
       duration: 800,
       easing: "ease",
       once: false,
       offset: 100,
       delay: 100,
+      disable: window.innerWidth < 768 ? "phone" : false,
     })
+  } else {
+    console.warn("AOS is not defined. Make sure to include the AOS library.")
   }
 
   // Initialize Swiper for testimonials
-  // Declare Swiper if it's not already available globally
-  if (typeof Swiper === "undefined") {
-    console.warn("Swiper is not defined. Make sure to include the Swiper library.")
-  } else {
-    new Swiper(".testimonial-slider", {
+  if (typeof Swiper !== "undefined") {
+    const testimonialSwiper = new Swiper(".testimonial-slider", {
       slidesPerView: 1,
       spaceBetween: 30,
       loop: true,
@@ -40,18 +56,17 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       },
     })
+  } else {
+    console.warn("Swiper is not defined. Make sure to include the Swiper library.")
   }
 
   // Initialize Particles.js for hero section
-  // Declare particlesJS if it's not already available globally
-  if (typeof particlesJS === "undefined") {
-    console.warn("particlesJS is not defined. Make sure to include the particles.js library.")
-  } else {
+  if (typeof particlesJS !== "undefined") {
     if (document.getElementById("particles-js")) {
       particlesJS("particles-js", {
         particles: {
           number: {
-            value: 80,
+            value: window.innerWidth < 768 ? 30 : 80,
             density: {
               enable: true,
               value_area: 800,
@@ -107,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
         interactivity: {
           detect_on: "canvas",
           events: {
-            onHover: {
+            onhover: {
               enable: true,
               mode: "grab",
             },
@@ -132,240 +147,282 @@ document.addEventListener("DOMContentLoaded", () => {
         retina_detect: true,
       })
     }
+  } else {
+    console.warn("particlesJS is not defined. Make sure to include the particles.js library.")
   }
 
-  // Preloader
+  // Preloader with advanced animation
   const preloader = document.querySelector(".preloader")
   const loadingProgress = document.querySelector(".loading-progress")
 
-  let progress = 0
-  const interval = setInterval(() => {
-    progress += 5
-    loadingProgress.style.width = `${progress}%`
+  if (preloader && loadingProgress) {
+    let progress = 0
+    const interval = setInterval(() => {
+      progress += 5
+      loadingProgress.style.width = `${progress}%`
 
-    if (progress >= 100) {
-      clearInterval(interval)
-      setTimeout(() => {
-        preloader.style.opacity = "0"
+      if (progress >= 100) {
+        clearInterval(interval)
         setTimeout(() => {
-          preloader.style.display = "none"
-          // Trigger entrance animations after preloader
-          document.querySelectorAll(".hero-content > *").forEach((el, index) => {
-            setTimeout(() => {
-              el.classList.add("animated", "fadeInUp")
-            }, index * 200)
-          })
-        }, 500)
-      }, 500)
-    }
-  }, 50)
+          preloader.style.opacity = "0"
+          setTimeout(() => {
+            preloader.style.display = "none"
+            // Trigger entrance animations after preloader
+            document.querySelectorAll(".hero-content > *").forEach((el, index) => {
+              setTimeout(() => {
+                el.classList.add("animated", "fadeInUp")
+              }, index * 200)
+            })
 
-  // Mobile Navigation Toggle
+            // Add animation to floating elements
+            document.querySelectorAll(".fruit-float").forEach((el, index) => {
+              el.style.animationDelay = `${index * 0.3}s`
+            })
+          }, 500)
+        }, 500)
+      }
+    }, 50)
+  }
+
+  // Mobile Navigation Toggle with improved animation
   const hamburger = document.querySelector(".hamburger")
   const nav = document.querySelector(".nav")
+  const body = document.body
 
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active")
-    nav.classList.toggle("active")
+  if (hamburger && nav) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active")
+      nav.classList.toggle("active")
 
-    // Animate hamburger
-    const spans = hamburger.querySelectorAll("span")
-    if (hamburger.classList.contains("active")) {
-      spans[0].style.transform = "rotate(45deg) translate(5px, 5px)"
-      spans[1].style.opacity = "0"
-      spans[2].style.transform = "rotate(-45deg) translate(7px, -6px)"
-    } else {
-      spans[0].style.transform = "none"
-      spans[1].style.opacity = "1"
-      spans[2].style.transform = "none"
-    }
-  })
+      // Prevent body scrolling when menu is open
+      if (nav.classList.contains("active")) {
+        body.style.overflow = "hidden"
+      } else {
+        body.style.overflow = ""
+      }
+
+      // Animate hamburger
+      const spans = hamburger.querySelectorAll("span")
+      if (hamburger.classList.contains("active")) {
+        spans[0].style.transform = "rotate(45deg) translate(5px, 5px)"
+        spans[1].style.opacity = "0"
+        spans[2].style.transform = "rotate(-45deg) translate(7px, -6px)"
+      } else {
+        spans[0].style.transform = "none"
+        spans[1].style.opacity = "1"
+        spans[2].style.transform = "none"
+      }
+    })
+  }
 
   // Close mobile menu when clicking on a nav link
   const navLinks = document.querySelectorAll(".nav-link")
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active")
-      nav.classList.remove("active")
-
-      // Reset hamburger
-      const spans = hamburger.querySelectorAll("span")
-      spans[0].style.transform = "none"
-      spans[1].style.opacity = "1"
-      spans[2].style.transform = "none"
-    })
-  })
-
-  // Sticky Header
-  const header = document.querySelector(".header")
-  // Removed unused variable 'heroSection'
-  const headerHeight = header.offsetHeight
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 100) {
-      header.classList.add("scrolled")
-      header.style.backgroundColor =
-        document.documentElement.getAttribute("data-theme") === "dark"
-          ? "rgba(30, 30, 30, 0.95)"
-          : "rgba(255, 255, 255, 0.95)"
-      header.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)"
-    } else {
-      header.classList.remove("scrolled")
-      header.style.backgroundColor =
-        document.documentElement.getAttribute("data-theme") === "dark"
-          ? "rgba(30, 30, 30, 0.95)"
-          : "rgba(255, 255, 255, 0.95)"
-      header.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)"
-    }
-  })
-
-  // Active Navigation Link on Scroll
-  const sections = document.querySelectorAll("section")
-
-  window.addEventListener("scroll", () => {
-    let current = ""
-
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop
-      // Removed unused variable 'sectionHeight'
-
-      if (window.scrollY >= sectionTop - headerHeight - 100) {
-        current = section.getAttribute("id")
-      }
-    })
-
+  if (navLinks.length > 0 && hamburger && nav) {
     navLinks.forEach((link) => {
-      link.classList.remove("active")
-      if (link.getAttribute("href") === `#${current}`) {
-        link.classList.add("active")
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("active")
+        nav.classList.remove("active")
+        body.style.overflow = ""
+
+        // Reset hamburger
+        const spans = hamburger.querySelectorAll("span")
+        spans[0].style.transform = "none"
+        spans[1].style.opacity = "1"
+        spans[2].style.transform = "none"
+      })
+    })
+  }
+
+  // Sticky Header with enhanced effects
+  const header = document.querySelector(".header")
+  if (header) {
+    const headerHeight = header.offsetHeight
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        header.classList.add("scrolled")
+        header.style.backgroundColor =
+          document.documentElement.getAttribute("data-theme") === "dark"
+            ? "rgba(30, 30, 30, 0.95)"
+            : "rgba(255, 255, 255, 0.95)"
+        header.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)"
+        header.style.height = "60px"
+      } else {
+        header.classList.remove("scrolled")
+        header.style.backgroundColor =
+          document.documentElement.getAttribute("data-theme") === "dark"
+            ? "rgba(30, 30, 30, 0.95)"
+            : "rgba(255, 255, 255, 0.95)"
+        header.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)"
+        header.style.height = `${headerHeight}px`
       }
     })
-  })
+  }
 
-  // Scroll to Top Button
-  const scrollTopBtn = document.querySelector(".scroll-top")
+  // Active Navigation Link on Scroll with smooth transition
+  const sections = document.querySelectorAll("section")
+  if (sections.length > 0 && header) {
+    const headerHeight = header.offsetHeight
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 500) {
-      scrollTopBtn.classList.add("active")
-    } else {
-      scrollTopBtn.classList.remove("active")
-    }
-  })
+    window.addEventListener("scroll", () => {
+      let current = ""
 
-  scrollTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
-  })
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop
+        const sectionHeight = section.clientHeight
 
-  // Fix for hero buttons - ensure smooth scrolling
-  const heroButtons = document.querySelectorAll(".hero-buttons .btn")
-  heroButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const targetId = button.getAttribute("href")
-      if (targetId && targetId.startsWith("#")) {
-        e.preventDefault()
-        const targetElement = document.querySelector(targetId)
-        if (targetElement) {
-          const headerHeight = document.querySelector(".header").offsetHeight
-          const offsetTop = targetElement.offsetTop - headerHeight
-          window.scrollTo({
-            top: offsetTop,
-            behavior: "smooth",
-          })
-        }
-      }
-    })
-
-    // Add hover effect
-    button.addEventListener("mouseenter", () => {
-      button.style.transform = "translateY(-3px)"
-      button.style.boxShadow = "0 10px 15px rgba(0, 0, 0, 0.1)"
-    })
-
-    button.addEventListener("mouseleave", () => {
-      button.style.transform = ""
-      button.style.boxShadow = ""
-    })
-  })
-
-  // FAQ Accordion
-  const faqItems = document.querySelectorAll(".faq-item")
-
-  faqItems.forEach((item) => {
-    const question = item.querySelector(".faq-question")
-
-    question.addEventListener("click", () => {
-      // Close all other FAQ items
-      faqItems.forEach((otherItem) => {
-        if (otherItem !== item) {
-          otherItem.classList.remove("active")
+        if (window.scrollY >= sectionTop - headerHeight - 100) {
+          current = section.getAttribute("id")
         }
       })
 
-      // Toggle current FAQ item
-      item.classList.toggle("active")
+      navLinks.forEach((link) => {
+        link.classList.remove("active")
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("active")
+        }
+      })
+    })
+  }
+
+  // Scroll to Top Button with enhanced animation
+  const scrollTopBtn = document.querySelector(".scroll-top")
+  if (scrollTopBtn) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add("active")
+      } else {
+        scrollTopBtn.classList.remove("active")
+      }
+    })
+
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
+
+      // Add bounce animation when clicked
+      scrollTopBtn.classList.add("bounce")
+      setTimeout(() => {
+        scrollTopBtn.classList.remove("bounce")
+      }, 2000)
+    })
+  }
+
+  // Smooth scrolling for all anchor links with offset adjustment
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      if (this.getAttribute("href") === "#") return
+
+      e.preventDefault()
+      const targetId = this.getAttribute("href")
+      const targetElement = document.querySelector(targetId)
+
+      if (targetElement) {
+        const headerHeight = document.querySelector(".header").offsetHeight
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        })
+
+        // Close mobile menu if open
+        if (nav && nav.classList.contains("active") && hamburger) {
+          hamburger.click()
+        }
+      }
     })
   })
 
-  // Product Filter - Show all products by default
+  // FAQ Accordion with smooth animation
+  const faqItems = document.querySelectorAll(".faq-item")
+  if (faqItems.length > 0) {
+    faqItems.forEach((item) => {
+      const question = item.querySelector(".faq-question")
+
+      question.addEventListener("click", () => {
+        // Close all other FAQ items
+        faqItems.forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.classList.remove("active")
+          }
+        })
+
+        // Toggle current FAQ item
+        item.classList.toggle("active")
+
+        // Add shake animation when opening
+        if (item.classList.contains("active")) {
+          const toggle = item.querySelector(".faq-toggle")
+          toggle.classList.add("shake")
+          setTimeout(() => {
+            toggle.classList.remove("shake")
+          }, 500)
+        }
+      })
+    })
+  }
+
+  // Product Filter with enhanced animations
   const filterBtns = document.querySelectorAll(".filter-btn")
   const productCards = document.querySelectorAll(".product-card")
 
-  // Show all products by default
-  productCards.forEach((card) => {
-    card.style.display = "block"
-    card.style.opacity = "1"
-    card.style.transform = "translateY(0)"
-  })
+  if (filterBtns.length > 0 && productCards.length > 0) {
+    // Show all products by default
+    productCards.forEach((card) => {
+      card.style.display = "block"
+      card.style.opacity = "1"
+      card.style.transform = "translateY(0)"
+    })
 
-  // Make "All Fruits" button active by default
-  const allFruitsBtn = document.querySelector('.filter-btn[data-filter="all"]')
-  if (allFruitsBtn) {
-    allFruitsBtn.classList.add("active")
-  }
+    // Make "All Fruits" button active by default
+    const allFruitsBtn = document.querySelector('.filter-btn[data-filter="all"]')
+    if (allFruitsBtn) {
+      allFruitsBtn.classList.add("active")
+    }
 
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      // Remove active class from all buttons
-      filterBtns.forEach((btn) => {
-        btn.classList.remove("active")
-      })
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        // Remove active class from all buttons
+        filterBtns.forEach((btn) => {
+          btn.classList.remove("active")
+        })
 
-      // Add active class to clicked button
-      btn.classList.add("active")
+        // Add active class to clicked button
+        btn.classList.add("active")
 
-      // Get filter value
-      const filter = btn.getAttribute("data-filter")
+        // Get filter value
+        const filter = btn.getAttribute("data-filter")
 
-      // Filter products
-      productCards.forEach((card) => {
-        if (filter === "all") {
-          card.style.display = "block"
-          setTimeout(() => {
-            card.style.opacity = "1"
-            card.style.transform = "translateY(0)"
-          }, 100)
-        } else if (card.getAttribute("data-category") === filter) {
-          card.style.display = "block"
-          setTimeout(() => {
-            card.style.opacity = "1"
-            card.style.transform = "translateY(0)"
-          }, 100)
-        } else {
-          card.style.opacity = "0"
-          card.style.transform = "translateY(20px)"
-          setTimeout(() => {
-            card.style.display = "none"
-          }, 300)
-        }
+        // Filter products with enhanced animation
+        productCards.forEach((card) => {
+          if (filter === "all") {
+            card.style.display = "block"
+            setTimeout(() => {
+              card.style.opacity = "1"
+              card.style.transform = "translateY(0)"
+            }, 100)
+          } else if (card.getAttribute("data-category") === filter) {
+            card.style.display = "block"
+            setTimeout(() => {
+              card.style.opacity = "1"
+              card.style.transform = "translateY(0)"
+            }, 100)
+          } else {
+            card.style.opacity = "0"
+            card.style.transform = "translateY(20px)"
+            setTimeout(() => {
+              card.style.display = "none"
+            }, 300)
+          }
+        })
       })
     })
-  })
+  }
 
-  // Product Quick View Modal
+  // Product Quick View Modal with enhanced animations
   const modal = document.getElementById("product-modal")
   const modalClose = document.querySelector(".modal-close")
   const quickViewBtns = document.querySelectorAll(".product-quick-view")
@@ -412,8 +469,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "Our papayas are naturally grown without chemicals or pesticides. They're harvested when perfectly ripe, ensuring a sweet taste and soft texture that's perfect for both eating fresh and cooking.",
       benefits: [
         "Contains papain, an enzyme that aids digestion",
-        "Rich in antioxidants like carotenes and flavonoids (plant compounds)",
-        "Excellent source of vitamin C and folate (vitamin B9)",
+        "Rich in antioxidants like carotenes and flavonoids",
+        "Excellent source of vitamin C and folate",
         "Helps improve skin health and appearance",
       ],
     },
@@ -443,7 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
       benefits: [
         "Extremely high in vitamin C - more than oranges",
         "Rich in dietary fiber for digestive health",
-        "Contains lycopene (a powerful antioxidant)",
+        "Contains lycopene, a powerful antioxidant",
         "Low in calories and high in nutrients",
       ],
     },
@@ -456,7 +513,7 @@ document.addEventListener("DOMContentLoaded", () => {
       description:
         "Our pineapples are grown organically and harvested at peak ripeness for maximum sweetness and juiciness. Each pineapple is carefully selected to ensure the perfect balance of sweet and tangy flavors.",
       benefits: [
-        "Rich in bromelain (an enzyme with anti-inflammatory properties)",
+        "Rich in bromelain, an enzyme with anti-inflammatory properties",
         "Excellent source of vitamin C and manganese",
         "Contains antioxidants that fight oxidative stress",
         "Aids digestion and boosts immunity",
@@ -464,59 +521,77 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   }
 
-  // Open modal with product data
-  quickViewBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const productId = btn.getAttribute("data-product")
-      const product = productData[productId]
+  if (modal && modalClose && quickViewBtns.length > 0) {
+    // Open modal with product data and enhanced animations
+    quickViewBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const productId = btn.getAttribute("data-product")
+        const product = productData[productId]
 
-      // Set modal content
-      document.getElementById("modal-product-title").textContent = product.title
-      document.getElementById("modal-product-price").textContent = product.price
-      document.getElementById("modal-product-unit").textContent = product.unit
-      document.getElementById("modal-product-rating").textContent = product.rating
-      document.getElementById("modal-product-description").textContent = product.description
-      document.getElementById("modal-product-image").src = product.image
+        if (!product) return
 
-      // Set benefits
-      const benefitsList = document.getElementById("modal-product-benefits")
-      benefitsList.innerHTML = ""
-      product.benefits.forEach((benefit) => {
-        const li = document.createElement("li")
-        li.innerHTML = `<i class="fas fa-check"></i> ${benefit}`
-        benefitsList.appendChild(li)
+        // Set modal content
+        document.getElementById("modal-product-title").textContent = product.title
+        document.getElementById("modal-product-price").textContent = product.price
+        document.getElementById("modal-product-unit").textContent = product.unit
+        document.getElementById("modal-product-rating").textContent = product.rating
+        document.getElementById("modal-product-description").textContent = product.description
+        document.getElementById("modal-product-image").src = product.image
+
+        // Set benefits with staggered animation
+        const benefitsList = document.getElementById("modal-product-benefits")
+        benefitsList.innerHTML = ""
+        product.benefits.forEach((benefit, index) => {
+          const li = document.createElement("li")
+          li.innerHTML = `<i class="fas fa-check"></i> ${benefit}`
+          li.style.animationDelay = `${0.1 * (index + 1)}s`
+          benefitsList.appendChild(li)
+        })
+
+        // Show modal with animation
+        modal.style.display = "flex"
+        setTimeout(() => {
+          modal.classList.add("active")
+          document.querySelector(".modal-content").classList.add("active")
+
+          // Prevent body scrolling when modal is open
+          document.body.style.overflow = "hidden"
+        }, 10)
       })
-
-      // Show modal
-      modal.style.display = "flex"
-      setTimeout(() => {
-        modal.classList.add("active")
-        document.querySelector(".modal-content").classList.add("active")
-      }, 10)
     })
-  })
 
-  // Close modal
-  modalClose.addEventListener("click", () => {
-    modal.classList.remove("active")
-    document.querySelector(".modal-content").classList.remove("active")
-    setTimeout(() => {
-      modal.style.display = "none"
-    }, 300)
-  })
+    // Close modal with animation
+    modalClose.addEventListener("click", () => {
+      closeModal()
+    })
 
-  // Close modal when clicking outside
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) {
+    // Close modal when clicking outside
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal()
+      }
+    })
+
+    // Close modal with escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.style.display === "flex") {
+        closeModal()
+      }
+    })
+
+    function closeModal() {
       modal.classList.remove("active")
       document.querySelector(".modal-content").classList.remove("active")
       setTimeout(() => {
         modal.style.display = "none"
+
+        // Re-enable body scrolling
+        document.body.style.overflow = ""
       }, 300)
     }
-  })
+  }
 
-  // Animate counter numbers in About section
+  // Animate counter numbers in About section with improved animation
   const animateCounter = (el) => {
     const target = Number.parseInt(el.getAttribute("data-count"))
     const duration = 2000 // 2 seconds
@@ -534,27 +609,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Intersection Observer for counter animation
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const counters = document.querySelectorAll(".stat-number")
-          counters.forEach((counter) => {
-            animateCounter(counter)
-          })
-          counterObserver.disconnect()
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
+  if ("IntersectionObserver" in window) {
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const counters = document.querySelectorAll(".stat-number")
+            counters.forEach((counter) => {
+              animateCounter(counter)
+            })
+            counterObserver.disconnect()
+          }
+        })
+      },
+      { threshold: 0.5 },
+    )
 
-  const statsSection = document.querySelector(".about-stats")
-  if (statsSection) {
-    counterObserver.observe(statsSection)
+    const statsSection = document.querySelector(".about-stats")
+    if (statsSection) {
+      counterObserver.observe(statsSection)
+    }
   }
 
-  // Form Submission
+  // Form Submission with validation and animation
   const contactForm = document.querySelector(".contact-form")
   const newsletterForm = document.querySelector(".newsletter-form")
 
@@ -565,8 +642,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // Get form data
       const name = contactForm.querySelector("#name").value
       const email = contactForm.querySelector("#email").value
-      // Removed unused variable 'phone'
-      // Removed unused variable 'subject'
+      const phone = contactForm.querySelector("#phone").value
+      const subject = contactForm.querySelector("#subject").value
       const message = contactForm.querySelector("#message").value
 
       // Simple validation
@@ -606,7 +683,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Search Functionality
+  // Search Functionality with enhanced animation
   const searchBtn = document.querySelector(".search-btn")
   const searchInput = document.querySelector(".search-input")
 
@@ -616,6 +693,10 @@ document.addEventListener("DOMContentLoaded", () => {
       searchInput.classList.toggle("active")
       if (searchInput.classList.contains("active")) {
         searchInput.focus()
+        searchBtn.classList.add("pulse")
+        setTimeout(() => {
+          searchBtn.classList.remove("pulse")
+        }, 1000)
       } else {
         searchInput.blur()
       }
@@ -653,7 +734,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Quantity Selector
+  // Quantity Selector with improved interaction
   const quantityInput = document.querySelector(".quantity-input")
   const minusBtn = document.querySelector(".minus-btn")
   const plusBtn = document.querySelector(".plus-btn")
@@ -664,6 +745,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (value > 1) {
         value--
         quantityInput.value = value
+        minusBtn.classList.add("pulse")
+        setTimeout(() => {
+          minusBtn.classList.remove("pulse")
+        }, 500)
       }
     })
 
@@ -672,6 +757,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (value < 99) {
         value++
         quantityInput.value = value
+        plusBtn.classList.add("pulse")
+        setTimeout(() => {
+          plusBtn.classList.remove("pulse")
+        }, 500)
       }
     })
 
@@ -684,139 +773,95 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
   }
-})
 
-// About and Seasonal Sections JavaScript
-document.addEventListener("DOMContentLoaded", () => {
-  // Animate counter numbers in About section
-  const animateCounter = (el) => {
-    const target = parseInt(el.getAttribute("data-count"));
-    const duration = 2000; // 2 seconds
-    const step = target / (duration / 16); // 16ms per frame (60fps)
-    let current = 0;
+  // Add touch support for mobile devices
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        clearInterval(timer);
-        current = target;
+  if (isMobile) {
+    document.body.classList.add("mobile-device")
+
+    // Add touch support for buttons and cards
+    const touchElements = document.querySelectorAll(".btn, .product-card, .feature-card, .action-btn")
+    touchElements.forEach((el) => {
+      el.addEventListener(
+        "touchstart",
+        function () {
+          this.classList.add("touch-active")
+        },
+        { passive: true },
+      )
+
+      el.addEventListener(
+        "touchend",
+        function () {
+          setTimeout(() => {
+            this.classList.remove("touch-active")
+          }, 300)
+        },
+        { passive: true },
+      )
+    })
+  }
+
+  // Add parallax effect to hero section
+  const heroSection = document.querySelector(".hero")
+  if (heroSection && !isMobile) {
+    window.addEventListener("scroll", () => {
+      const scrollPosition = window.scrollY
+      const heroImage = document.querySelector(".hero-image")
+      if (heroImage) {
+        heroImage.style.transform = `translateY(${scrollPosition * 0.1}px)`
       }
-      el.textContent = Math.floor(current);
-    }, 16);
-  };
+    })
+  }
 
-  // Intersection Observer for counter animation
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const counters = document.querySelectorAll(".stat-number");
-          counters.forEach((counter) => {
-            animateCounter(counter);
-          });
-          counterObserver.disconnect(); // Only animate once
+  // Add hover effects for feature cards
+  const featureCards = document.querySelectorAll(".feature-card")
+  if (featureCards.length > 0 && !isMobile) {
+    featureCards.forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        card.style.transform = "translateY(-10px)"
+        card.style.boxShadow = "0 15px 30px rgba(0, 0, 0, 0.15)"
+
+        const icon = card.querySelector(".feature-icon")
+        if (icon) {
+          icon.style.transform = "rotateY(180deg)"
         }
-      });
-    },
-    { threshold: 0.5 }
-  );
+      })
 
-  const statsSection = document.querySelector(".about-stats");
-  if (statsSection) {
-    counterObserver.observe(statsSection);
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "translateY(0)"
+        card.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)"
+
+        const icon = card.querySelector(".feature-icon")
+        if (icon) {
+          icon.style.transform = "rotateY(0)"
+        }
+      })
+    })
   }
 
-  // About section image hover effect
-  const aboutImage = document.querySelector(".image-frame");
-  if (aboutImage) {
-    aboutImage.addEventListener("mouseenter", () => {
-      aboutImage.style.transform = "translateY(-10px)";
-      aboutImage.style.boxShadow = "0 15px 30px rgba(0, 0, 0, 0.2)";
-    });
+  // Add 3D tilt effect to product cards
+  const productCardsList = document.querySelectorAll(".product-card")
+  if (productCardsList.length > 0 && !isMobile) {
+    productCardsList.forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
 
-    aboutImage.addEventListener("mouseleave", () => {
-      aboutImage.style.transform = "translateY(0)";
-      aboutImage.style.boxShadow = "";
-    });
+        const centerX = rect.width / 2
+        const centerY = rect.height / 2
+
+        const tiltX = (y - centerY) / 20
+        const tiltY = (centerX - x) / 20
+
+        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-5px)`
+      })
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)"
+      })
+    })
   }
-
-  // Seasonal banner hover effect
-  const seasonalBanner = document.querySelector(".seasonal-banner");
-  if (seasonalBanner) {
-    seasonalBanner.addEventListener("mouseenter", () => {
-      const img = seasonalBanner.querySelector(".seasonal-image img");
-      if (img) {
-        img.style.transform = "scale(1.05)";
-      }
-    });
-
-    seasonalBanner.addEventListener("mouseleave", () => {
-      const img = seasonalBanner.querySelector(".seasonal-image img");
-      if (img) {
-        img.style.transform = "scale(1)";
-      }
-    });
-  }
-
-  // Fix for placeholder images
-  const fixPlaceholderImages = () => {
-    const placeholders = document.querySelectorAll('img[src^="/placeholder.svg"]');
-    placeholders.forEach(img => {
-      const src = img.getAttribute('src');
-      // Extract dimensions from the placeholder URL
-      const heightMatch = src.match(/height=(\d+)/);
-      const widthMatch = src.match(/width=(\d+)/);
-      
-      const height = heightMatch ? heightMatch[1] : 300;
-      const width = widthMatch ? widthMatch[1] : 300;
-      
-      // Replace with placeholder.co URL
-      const alt = img.getAttribute('alt') || 'Image';
-      const color = alt.toLowerCase().includes('mango') ? 'ff9800' : '4caf50';
-      img.src = `https://placehold.co/${width}x${height}/${color}/FFFFFF/png?text=${alt.replace(/\s+/g, '+')}`;
-    });
-  };
-
-  // Fix placeholder images
-  fixPlaceholderImages();
-
-  // Ensure dark mode is properly applied to these sections
-  const applyThemeToSections = () => {
-    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-    const aboutSection = document.querySelector(".about");
-    const seasonalSection = document.querySelector(".seasonal");
-    
-    if (aboutSection) {
-      aboutSection.style.backgroundColor = isDark ? "var(--background-alt)" : "var(--background-alt)";
-      
-      const aboutIntro = aboutSection.querySelector(".about-intro");
-      if (aboutIntro) {
-        aboutIntro.style.color = isDark ? "var(--primary-light)" : "var(--primary)";
-      }
-      
-      const statNumbers = aboutSection.querySelectorAll(".stat-number");
-      statNumbers.forEach(stat => {
-        stat.style.color = isDark ? "var(--primary-light)" : "var(--primary)";
-      });
-    }
-    
-    if (seasonalSection) {
-      seasonalSection.style.backgroundColor = isDark ? "var(--background)" : "var(--background)";
-    }
-  };
-
-  // Apply theme adjustments on load
-  applyThemeToSections();
-  
-  // Listen for theme changes
-  const themeSwitch = document.getElementById("theme-switch");
-  if (themeSwitch) {
-    themeSwitch.addEventListener("change", applyThemeToSections);
-  }
-
-  // Add AOS animations if AOS is available
-  if (typeof AOS !== "undefined") {
-    // Reinitialize AOS for these sections
-    AOS.refresh();
-  }
-});
+})

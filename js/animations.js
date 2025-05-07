@@ -14,9 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       repeat: -1,
       yoyo: true,
       ease: "power1.inOut",
-            });
-        }
-    });
+    })
 
     gsap.to(".custom-logo .logo-leaf-2", {
       rotation: -5,
@@ -81,6 +79,15 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: "power3.out",
       delay: 1.1,
     })
+
+    gsap.from(".hero-image .main-image", {
+      scale: 0.8,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      delay: 0.5,
+    })
+
     gsap.from(".fruit-float", {
       y: 30,
       opacity: 0,
@@ -92,8 +99,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Scroll Animations with ScrollTrigger
     if (typeof ScrollTrigger !== "undefined") {
-      
-  
+      // Features Section Animation
+      gsap.from(".feature-card", {
+        scrollTrigger: {
+          trigger: ".features",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power3.out",
+      })
+
+      // About Section Animation
+      gsap.from(".about-image", {
+        scrollTrigger: {
+          trigger: ".about",
+          start: "top 70%",
+          toggleActions: "play none none none",
+        },
+        x: -100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      })
+
+      gsap.from(".about-text", {
+        scrollTrigger: {
+          trigger: ".about",
+          start: "top 70%",
+          toggleActions: "play none none none",
+        },
+        x: 100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      })
+
+      // Seasonal Banner Animation
+      gsap.from(".seasonal-banner", {
+        scrollTrigger: {
+          trigger: ".seasonal",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+        scale: 0.9,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      })
+
       // Products Section Animation
       gsap.from(".product-card", {
         scrollTrigger: {
@@ -187,28 +244,28 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     }
 
-      // Button hover animation
-      const buttons = document.querySelectorAll(".btn")
-      buttons.forEach((button) => {
-        button.addEventListener("mouseenter", () => {
-          gsap.to(button, {
-            y: -5,
-            duration: 0.3,
-            ease: "power2.out",
-          })
-        })
+    // Micro-animations for interactive elements
 
-        button.addEventListener("mouseleave", () => {
-          gsap.to(button, {
-            y: 0,
-            duration: 0.3,
-            ease: "power2.out",
-          })
+    // Button hover animation
+    const buttons = document.querySelectorAll(".btn")
+    buttons.forEach((button) => {
+      button.addEventListener("mouseenter", () => {
+        gsap.to(button, {
+          y: -5,
+          duration: 0.3,
+          ease: "power2.out",
         })
       })
-  
 
-      
+      button.addEventListener("mouseleave", () => {
+        gsap.to(button, {
+          y: 0,
+          duration: 0.3,
+          ease: "power2.out",
+        })
+      })
+    })
+
     // Product card hover animation
     const productCards = document.querySelectorAll(".product-card")
     productCards.forEach((card) => {
@@ -245,19 +302,19 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     })
 
-       // WhatsApp float button animation
-       const whatsappFloat = document.querySelector(".whatsapp-float")
-       if (whatsappFloat) {
-         gsap.to(whatsappFloat, {
-           y: -10,
-           duration: 1.5,
-           repeat: -1,
-           yoyo: true,
-           ease: "power1.inOut",
-         })
-       }
+    // WhatsApp float button animation
+    const whatsappFloat = document.querySelector(".whatsapp-float")
+    if (whatsappFloat) {
+      gsap.to(whatsappFloat, {
+        y: -10,
+        duration: 1.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+      })
+    }
 
-       // Scroll to top button animation
+    // Scroll to top button animation
     const scrollTopBtn = document.querySelector(".scroll-top")
     if (scrollTopBtn) {
       scrollTopBtn.addEventListener("mouseenter", () => {
@@ -271,14 +328,29 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     }
 
-        // Feature icon animation
-        const featureIcons = document.querySelectorAll(".feature-icon")
-        featureIcons.forEach((icon) => {
-          icon.addEventListener("mouseenter", () => {
-            gsap.to(icon, {
-              rotation: 360,
-              duration: 0.8,
-              ease: "power2.out",
-            })
-          })
+    // Feature icon animation
+    const featureIcons = document.querySelectorAll(".feature-icon")
+    featureIcons.forEach((icon) => {
+      icon.addEventListener("mouseenter", () => {
+        gsap.to(icon, {
+          rotation: 360,
+          duration: 0.8,
+          ease: "power2.out",
         })
+      })
+    })
+
+    // Add text typing animation to section titles
+    const sectionTitles = document.querySelectorAll(".section-title")
+    sectionTitles.forEach((title) => {
+      ScrollTrigger.create({
+        trigger: title,
+        start: "top 80%",
+        onEnter: () => {
+          gsap.fromTo(title, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" })
+        },
+        once: true,
+      })
+    })
+  }
+})

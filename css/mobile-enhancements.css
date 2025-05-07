@@ -1,0 +1,232 @@
+/* Mobile-specific enhancements for RU Organic Bazaar */
+
+/* Touch-friendly styles */
+.touch-active {
+  transform: scale(0.98) !important;
+  transition: transform 0.2s ease !important;
+}
+
+.input-focus {
+  box-shadow: 0 0 0 2px var(--primary) !important;
+}
+
+/* Mobile device optimizations */
+.mobile-device .hero-particles {
+  display: none;
+}
+
+.mobile-device .animated {
+  animation-duration: 0.5s !important;
+}
+
+/* Improved tap targets for mobile */
+@media (max-width: 768px) {
+  .btn,
+  .action-btn,
+  .nav-link,
+  .footer a,
+  .social-link,
+  .filter-btn {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-link {
+    padding: 12px 0;
+  }
+
+  /* Increase spacing between interactive elements */
+  .product-actions {
+    gap: 20px;
+  }
+
+  .footer-links ul li,
+  .footer-products ul li {
+    margin-bottom: 12px;
+  }
+
+  /* Improve form elements on mobile */
+  input,
+  textarea,
+  select,
+  button {
+    font-size: 16px !important; /* Prevents iOS zoom */
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 15px !important;
+  }
+
+  /* Fix for sticky header on mobile */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  [data-theme="dark"] .header {
+    background-color: rgba(30, 30, 30, 0.95);
+  }
+
+  /* Improved mobile navigation */
+  .nav.active {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Better hamburger menu */
+  .hamburger {
+    width: 30px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+    z-index: 1002;
+  }
+
+  .hamburger span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: var(--text);
+    border-radius: 3px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+  }
+
+  [data-theme="dark"] .hamburger span {
+    background: var(--text-white);
+  }
+
+  .hamburger span:nth-child(1) {
+    top: 0px;
+  }
+
+  .hamburger span:nth-child(2) {
+    top: 10px;
+  }
+
+  .hamburger span:nth-child(3) {
+    top: 20px;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    top: 10px;
+    transform: rotate(45deg);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    top: 10px;
+    transform: rotate(-45deg);
+  }
+
+  /* Mobile-friendly product cards */
+  .product-card {
+    margin-bottom: 20px;
+  }
+
+  .product-card .product-actions {
+    opacity: 1;
+    transform: translateY(0);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 0;
+  }
+
+  /* Mobile-friendly modal */
+  .modal-content {
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+
+  .modal-close {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+    border-radius: 50%;
+  }
+
+  /* Fix for iOS 100vh issue */
+  .hero {
+    height: calc(100 * var(--vh));
+  }
+
+  .nav {
+    height: calc(100 * var(--vh) - var(--header-height));
+  }
+}
+
+/* Landscape mode optimizations */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    height: auto;
+    min-height: 450px;
+  }
+
+  .hero-content {
+    padding: 60px 0;
+  }
+
+  .nav-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px 30px;
+  }
+}
+
+/* Fix for notched phones */
+@supports (padding: max(0px)) {
+  .header,
+  .footer,
+  .whatsapp-float,
+  .quick-order-btn,
+  .scroll-top {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .whatsapp-float {
+    bottom: max(20px, env(safe-area-inset-bottom));
+  }
+
+  .quick-order-btn {
+    bottom: max(20px, env(safe-area-inset-bottom));
+  }
+
+  .scroll-top {
+    bottom: max(20px, env(safe-area-inset-bottom));
+    right: max(80px, env(safe-area-inset-right) + 60px);
+  }
+}
+
+/* Better mobile scrolling */
+html,
+body {
+  overscroll-behavior: none;
+}
+
+/* Improved mobile animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

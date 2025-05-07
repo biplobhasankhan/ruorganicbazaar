@@ -1,0 +1,150 @@
+/* Mobile-specific fixes for RU Organic Bazaar */
+
+/* Fix for mobile header spacing and alignment */
+@media (max-width: 576px) {
+    /* Header fixes */
+    .header {
+      height: 70px; /* Reduce header height on mobile */
+    }
+  
+    .header .container {
+      padding: 0 10px; /* Reduce padding for more space */
+    }
+  
+    .logo a {
+      font-size: 1.2rem; /* Smaller font size for logo text */
+      gap: 5px; /* Reduce gap between logo and text */
+    }
+  
+    .header-logo {
+      height: 30px; /* Smaller logo size */
+    }
+  
+    /* Fix spacing between header elements */
+    .header-actions {
+      gap: 8px;
+      margin-right: 0; /* Remove right margin */
+    }
+  
+    /* Make social icons smaller on mobile */
+    .header-whatsapp,
+    .header-facebook {
+      width: 32px;
+      height: 32px;
+      font-size: 14px;
+    }
+  
+    /* Fix theme toggle position */
+    .theme-toggle {
+      position: relative;
+      top: auto;
+      right: auto;
+      margin-left: 5px;
+    }
+  
+    /* Make theme toggle smaller */
+    .switch-label {
+      width: 50px;
+      height: 26px;
+    }
+  
+    .toggle-ball {
+      width: 22px;
+      height: 22px;
+    }
+  
+    .theme-switch:checked + .switch-label .toggle-ball {
+      transform: translateX(24px);
+    }
+  
+    /* Hamburger menu adjustments */
+    .hamburger {
+      margin-left: 5px;
+      width: 25px;
+      height: 18px;
+    }
+  
+    .hamburger span {
+      height: 2px;
+    }
+  
+    /* Fix mobile navigation */
+    .nav {
+      top: 70px; /* Match reduced header height */
+    }
+  
+    /* Adjust hero section to account for smaller header */
+    .hero {
+      padding-top: 70px;
+    }
+  }
+  
+  /* Fix for very small screens */
+  @media (max-width: 360px) {
+    /* Further reduce sizes */
+    .header-logo {
+      height: 25px;
+    }
+  
+    .header-whatsapp,
+    .header-facebook {
+      width: 28px;
+      height: 28px;
+    }
+  
+    .switch-label {
+      width: 45px;
+      height: 24px;
+    }
+  
+    .toggle-ball {
+      width: 20px;
+      height: 20px;
+    }
+  
+    .theme-switch:checked + .switch-label .toggle-ball {
+      transform: translateX(21px);
+    }
+  
+    /* Hide icon labels on very small screens */
+    .fa-sun,
+    .fa-moon {
+      font-size: 10px;
+    }
+  }
+  
+  /* Fix for landscape mode on mobile */
+  @media (max-height: 450px) and (orientation: landscape) {
+    .header {
+      height: 60px;
+    }
+  
+    .nav {
+      top: 60px;
+      height: calc(100 * var(--vh) - 60px);
+    }
+  
+    .hero {
+      padding-top: 60px;
+    }
+  }
+  
+  /* Fix for notched phones */
+  @supports (padding: max(0px)) {
+    .header {
+      padding-left: max(10px, env(safe-area-inset-left));
+      padding-right: max(10px, env(safe-area-inset-right));
+    }
+  }
+  
+  /* Fix for iOS Safari */
+  @supports (-webkit-touch-callout: none) {
+    .header {
+      height: 70px;
+    }
+  
+    .nav {
+      height: calc(100vh - 70px);
+    }
+  }
+  
